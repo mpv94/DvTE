@@ -25,15 +25,15 @@ Description: This Jupyter Notebook processes the inputted quasiclassical molecul
 Instructions:
 
 1) Files Preparation:
-Before initiating the code, the necessary quasiclassical MD trajectories need to be computed. The code works with any trajectory file, however, testing has been primarily performed using the MILO package developed by the Ess group (https://github.com/DanielEss-lab/milo) which is interfaced with Gaussian16. This workflow can be in the form of MD simulations such as force fields, semiempirical methods (e.g., GFN2-xTB), and Density Functional Theory (DFT), as well as other methods. Currently, benchmarking has only been performed using quasiclassical MD at the M06-2X/MIDI! level of theory, which we recommend for use.
+Before initiating the code, the necessary quasiclassical MD trajectories need to be computed. The code works with any trajectory file, however, testing has been primarily performed using the MILO package developed by the Ess group (https://github.com/DanielEss-lab/milo) which is interfaced with Gaussian16. This workflow can be implemented using MD simulations such as force fields, semiempirical methods (e.g., GFN2-xTB), and Density Functional Theory (DFT), as well as other methods. Currently, benchmarking has only been performed using quasiclassical MD at the M06-2X/MIDI! level of theory, which we recommend for use.
 
 Recommendations based on current available benchmarking:
 
 ```
 Package: MILO
-Level of theory: M06-2X/MIDI! (inclusion of implict solvation is optional)
+Level of theory: M06-2X/MIDI! (inclusion of implicit solvation is optional)
 No of trajectories: 25
-Trajectory lenght: 1000 fs
+Trajectory length: 1000 fs
 Trajectory timestep: 1 fs
 ```
 
@@ -44,7 +44,7 @@ Note: The dynamics should be performed on the ground state surface (i.e., S0, mu
 2) Install Necessary Dependencies
 
 ```bash
-$ pip install acme
+$ pip install aqme
 ```
 3) Download and open the Jupyter notebook in the working directory containing all the trajectory files.
 
@@ -55,7 +55,7 @@ Note: Ensure that the correct Conda environment with the necessary dependencies 
 
 4) Execute the contents of the notebook.
    
-Note: The code has been tested only for Gaussian16, but the AQME package (link) allows for the generation of ORCA input files (please see the ACME instructions manual). Parameters for the file preparations are set by default based on our recommendations; however, these can be easily changed in the "Define Parameters for QM input file generation" cell. Currently, the triplet energy predictions have been benchmarked for the default settings. Any changes in basis set and functional will require empirical determination of the population cutoff (see DvTEProc for details) for accurate predictions of triplet energies.
+Note: The code has been tested only for Gaussian16, but the AQME package (link) allows for the generation of ORCA input files (please see the AQME instructions manual). Parameters for the file preparations are set by default based on our recommendations; however, these can be easily changed in the "Define Parameters for QM input file generation" cell. Currently, the triplet energy predictions have been benchmarked for the default settings. Any changes in the basis set and functional will require empirical determination of the population cutoff (see DvTEProc for details) for accurate predictions of triplet energies.
 
 Current Recommendations:
 ```
@@ -65,7 +65,7 @@ i_step = 1 #First Step in the sampled trajectories (Default = 1)
 f_step = 1000 #Final Step in the sampled trajectories (Default = 1000)
 
 #QM inputs
-qm_input='m062x/6-31G* scf=xqc' #Level of theory for vertical Triplet Enegy calculations
+qm_input='m062x/6-31G* scf=xqc' #Level of theory for vertical Triplet Energy calculations
 program='gaussian' #Program used for QM calculations (Options: gaussian and orca)
 mem='64GB' #Memory used (See AQME specifications)
 nprocs=32 #Number of processors (See AQME specifications)
